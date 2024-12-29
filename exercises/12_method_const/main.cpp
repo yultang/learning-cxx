@@ -5,7 +5,21 @@
 struct Fibonacci {
     int numbers[11];
     // TODO: 修改方法签名和实现，使测试通过
-    int get(int i) {
+
+    /*
+    constexpr Fibonacci(const int (&numbers)[11]) : numbers{numbers} {} {
+        for(int i = 0; i < 11; i++) {
+            numbers[i] = numbers[i];
+        }
+    }
+    */
+
+   /*
+   编译器要求get方法再编译时可用, 即get方法必须是const的
+   */
+
+    constexpr int get(int i) const {
+        return numbers[i];
     }
 };
 
