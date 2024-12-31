@@ -3,15 +3,16 @@
 
 // READ: `std::map` <https://zh.cppreference.com/w/cpp/container/map>
 // READ: `std::unordered_map` <https://zh.cppreference.com/w/cpp/container/unordered_map>
-
 template<class k, class v>
 bool key_exists(std::map<k, v> const &map, k const &key) {
-    // TODO: 实现函数
+    // 使用 std::map::find 判断键是否存在
+    return map.find(key) != map.end();
 }
 
 template<class k, class v>
 void set(std::map<k, v> &map, k key, v value) {
-    // TODO: 实现函数
+    // 使用 std::map 的索引操作插入或更新值
+    map[key] = value;
 }
 
 // ---- 不要修改以下代码 ----

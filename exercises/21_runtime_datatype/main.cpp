@@ -18,13 +18,26 @@ struct TaggedUnion {
 };
 
 // TODO: 将这个函数模板化用于 sigmoid_dyn
+/*
 float sigmoid(float x) {
     return 1 / (1 + std::exp(-x));
 }
+*/
+template <typename T>
+T sigmoid(T x) {
+    return 1 / (1 + std::exp(-x));
+}
 
+// 针对不同的联合体类型做不同的函数操作
+// 因为在float里的x时x.f, 在double里的x是x.d
 TaggedUnion sigmoid_dyn(TaggedUnion x) {
     TaggedUnion ans{x.type};
-    // TODO: 根据 type 调用 sigmoid
+    if(x.type == DataType::Float) {
+        ans.f = sigmoid(x.f);
+    } 
+    else {
+        ans.d = sigmoid(x.d);
+    }
     return ans;
 }
 
